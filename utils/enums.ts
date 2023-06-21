@@ -1,0 +1,5 @@
+export enum AD_METRIC_STATE {
+    RATED_WELL = 'RATED_WELL',
+    RATED_BADLY = 'RATED_BADLY',
+    UNRATED = 'UNRATED'
+}
