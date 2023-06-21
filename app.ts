@@ -4,8 +4,9 @@ import { AppDataSource } from './appDataSource';
 const app = express();
 const port = 8080;
 
+app.set('view engine','pug');
 app.get('/', (req, res) => {
-    res.send("Hello world!");
+    res.render('index');
 });
 
 AppDataSource.initialize()
