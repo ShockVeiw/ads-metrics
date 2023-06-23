@@ -1,0 +1,11 @@
+tr:hover {
+    cursor: pointer;
+}
+
+tr.rated-well {
+    background-color: green;
+}
+
+tr.rated-badly {
+    background-color: red;
+}
