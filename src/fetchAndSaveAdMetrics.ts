@@ -13,7 +13,7 @@ interface RawAdMetric {
 
 export const fetchAndSaveAdMetrics = () => {
     // AWS API call imitation
-    const adMetrics: RawAdMetric[] = JSON.parse(fs.readFileSync('./ads-metrics.json', 'utf8'));
+    const adMetrics: RawAdMetric[] = JSON.parse(fs.readFileSync('ads-metrics.json', 'utf8'));
     
     AppDataSource
         .initialize()
