@@ -1,5 +1,4 @@
 tr(class = adMetric.state === 'RATED_WELL' ? 'rated-well' : adMetric.state === 'RATED_BADLY' ? 'rated-badly' : 'unrated', id = `tr-${adMetric.id}`)
-    td= adMetric.date
     td= adMetric.keyword
     td= adMetric.impressions
     td= adMetric.orders
@@ -7,7 +6,7 @@ tr(class = adMetric.state === 'RATED_WELL' ? 'rated-well' : adMetric.state === '
         button.btn.btn-success(
             type = 'button',
             disabled = adMetric.state === 'RATED_WELL' ? true : false,
-            hx-post = `/ad-metrics/like/${adMetric.id}?date=${adMetric.date}&keyword=${adMetric.keyword}&impressions=${adMetric.impressions}&orders=${adMetric.orders}`,
+            hx-post = `/ad-metrics/like/${adMetric.id}?keyword=${encodeURIComponent(adMetric.keyword)}&impressions=${adMetric.impressions}&orders=${adMetric.orders}`,
             hx-trigger = 'click',
             hx-target = `#tr-${adMetric.id}`,
             hx-swap = 'outerHTML'
@@ -16,7 +15,7 @@ tr(class = adMetric.state === 'RATED_WELL' ? 'rated-well' : adMetric.state === '
         button.btn.btn-danger(
             type='button',
             disabled = adMetric.state === 'RATED_BADLY' ? true : false,
-            hx-post = `/ad-metrics/dislike/${adMetric.id}?date=${adMetric.date}&keyword=${adMetric.keyword}&impressions=${adMetric.impressions}&orders=${adMetric.orders}`,
+            hx-post = `/ad-metrics/dislike/${adMetric.id}?keyword=${encodeURIComponent(adMetric.keyword)}&impressions=${adMetric.impressions}&orders=${adMetric.orders}`,
             hx-trigger = 'click',
             hx-target = `#tr-${adMetric.id}`,
             hx-swap = 'outerHTML'

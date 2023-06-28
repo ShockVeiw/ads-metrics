@@ -20,14 +20,14 @@ export class AppController {
         try {
             const adMetricId = +req.params.id;
             const {
-                date,
                 keyword,
                 impressions,
                 orders
             } = req.query;
+
             await this.appService.changeAdMetricState(adMetricId, AD_METRIC_STATE.RATED_WELL);
 
-            res.render('components/ad-metric-row', { adMetric: { id: adMetricId, date, keyword, impressions, orders, state: AD_METRIC_STATE.RATED_WELL } });
+            res.render('components/ad-metric-row', { adMetric: { id: adMetricId, keyword, impressions, orders, state: AD_METRIC_STATE.RATED_WELL } });
         } catch (e) {
             console.log('AppController.likeAdMetric error:', e);
             res.sendStatus(500);
@@ -43,6 +43,7 @@ export class AppController {
                 impressions,
                 orders
             } = req.query;
+
             await this.appService.changeAdMetricState(adMetricId, AD_METRIC_STATE.RATED_BADLY);
 
             res.render('components/ad-metric-row', { adMetric: { id: adMetricId, date, keyword, impressions, orders, state: AD_METRIC_STATE.RATED_BADLY } });

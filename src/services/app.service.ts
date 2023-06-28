@@ -6,7 +6,10 @@ export class AppService {
     private readonly adMetricRepository = AppDataSource.getRepository(AdMetric);
 
     getAdMetrics(): Promise<AdMetric[]> {
-        return this.adMetricRepository.find();
+        return this.adMetricRepository
+            .createQueryBuilder('adMetric')
+            .groupBy('adMetric.keyword')
+            .getMany();
     }
 
     async changeAdMetricState(id: number, state: AD_METRIC_STATE.RATED_WELL | AD_METRIC_STATE.RATED_BADLY) {
