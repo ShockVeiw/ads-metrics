@@ -8,8 +8,12 @@ export class AppService {
     getAdMetrics(): Promise<AdMetric[]> {
         return this.adMetricRepository
             .createQueryBuilder('adMetric')
+            .select('adMetric.id', 'id')
+            .addSelect('adMetric.keyword', 'keyword')
+            .addSelect('SUM(adMetric.impressions)', 'impressions')
+            .addSelect('SUM(adMetric.orders)', 'orders')
             .groupBy('adMetric.keyword')
-            .getMany();
+            .getRawMany();
     }
 
     async changeAdMetricState(id: number, state: AD_METRIC_STATE.RATED_WELL | AD_METRIC_STATE.RATED_BADLY) {
